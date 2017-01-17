@@ -7,7 +7,7 @@ from sklearn.externals.joblib.numpy_pickle_utils import xrange
 import ocr
 from sklearn.cross_validation import train_test_split
 
-from ocr.ocr import OCRNeuralNetwork
+from ocr import OCRNeuralNetwork
 
 
 def test(data_matrix, data_labels, test_indices, nn):
@@ -31,4 +31,4 @@ print ("-----------")
 for i in xrange(5, 50, 5):
     nn = OCRNeuralNetwork(i, data_matrix, data_labels, train_indices, False)
     performance = str(test(data_matrix, data_labels, test_indices, nn))
-    print ("{i} Hidden Nodes: {val}".format(i=i, val=performance))
+    print ('{i} Hidden Nodes: {val}'.format(i=i, val=performance))
