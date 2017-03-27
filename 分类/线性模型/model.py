@@ -49,3 +49,15 @@ def squared_error_gradient(x_i,y_i,theta):
     return [-2*error(alpha,beta,x_i,y_i),  #alpha偏导数
             -2*error(alpha,beta,x_i,y_i)*x_i] #beta偏导数
 
+############xi不再是单个数字而是k个数字组成的向量
+beta = [alpha,bea_1,.....,beta_k]
+x_i = [1,x_i1,x_i2,......,x_ik]
+
+def predict(x_i,beta):
+    return  dot(x_i,beta)
+
+#拟合模型
+def error(x_i,y_i,beta):
+    return y_i - predict(x_i,beta)
+def squared_error(x_i,y_i,beta):
+    return error(x_i,y_i,beta) ** 2
