@@ -74,5 +74,5 @@ def estimate_beta(x,y):
                                x,y,
                                beta_inital,
                                0.001)
-random.seed(0)
-beta = estimate_beta(x,daily_minutes_good)
+# random.seed(0)
+# beta = estimate_beta(x,daily_minutes_good)
