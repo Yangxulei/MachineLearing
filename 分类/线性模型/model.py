@@ -1,4 +1,4 @@
-
+from numpy.random import random
 from scipy.ndimage import standard_deviation, mean
 from scipy.spatial.distance import correlation
 #yi = βxi + α + ɛi
@@ -61,3 +61,18 @@ def error(x_i,y_i,beta):
     return y_i - predict(x_i,beta)
 def squared_error(x_i,y_i,beta):
     return error(x_i,y_i,beta) ** 2
+#微积分计算
+def squared_error_gradietn(x_i,y_i,beta):
+    return [-2 * x_ij * error(x_i,y_i,beta)
+            for x_ij in x_i]
+
+#用随机梯度下降法寻找最优beta
+def estimate_beta(x,y):
+    beta_inital = [random.random() for x_i in x[0]]
+    return minimize_stochastic(squared_error,
+                               squared_error_gradient,
+                               x,y,
+                               beta_inital,
+                               0.001)
+random.seed(0)
+beta = estimate_beta(x,daily_minutes_good)
