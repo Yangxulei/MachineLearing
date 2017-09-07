@@ -57,7 +57,7 @@ def main(_):
             test_data = np.int32([start_idx])
             prob, _state = run_epoch(session, mtest, test_data, tf.no_op(), _state)
             gen_res = [char_list[0]]
-            for i in xrange(1, len(char_list)):
+            for i in tf.xrange(1, len(char_list)):
                 char = char_list[i]
                 try:
                     char_index = char_to_idx[char]
@@ -93,7 +93,7 @@ def main(_):
             prob, _state = run_epoch(session, mtest, test_data, tf.no_op(), _state)
             y1 = np.log(1e-20 + prob.reshape(-1))
             beams = [(beams[0][0], beams[0][1], beams[0][2], _state)]
-            for i in xrange(1, len(char_list)):
+            for i in tf.xrange(1, len(char_list)):
                 char = char_list[i]
                 try:
                     char_index = char_to_idx[char]
@@ -110,7 +110,7 @@ def main(_):
                 top_indices = np.argsort(-y1)
             b = beams[0]
             beam_candidates = []
-            for i in xrange(beam_size):
+            for i in tf.xrange(beam_size):
                 wordix = top_indices[i]
                 beam_candidates.append((b[0] + y1[wordix], b[1] + [idx_to_char[wordix]], wordix, _state))
             beam_candidates.sort(key = lambda x:x[0], reverse = True) # decreasing order
